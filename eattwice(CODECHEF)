@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+#include <iostream>
+using namespace std;
+
+int main(){
+    int tc;
+    cin>>tc;
+    while(tc--){
+        int m,n;
+        cin>>n>>m;
+        int darr[m];
+        map<int,int> mp;
+        for (int i = 0; i < n; ++i)
+        {
+            int d,v;
+            cin>>d>>v;
+            if(mp.find(d)==mp.end()){
+                mp.insert(make_pair(d,v));
+            }else{
+                mp.find(d)->second=max( mp.find(d)->second,v);
+            }
+
+            
+        }
+        int ma=0;
+        int nemax=0;
+        auto it2=mp.begin();
+
+        for(auto it=mp.begin();it!=mp.end();it++){
+            //ma=max(it->second,ma);
+            if(it->second>ma){
+                ma=it->second;
+                it2=it;
+            }
+
+            
+        }
+        mp.erase(it2);
+        for(auto it=mp.begin();it!=mp.end();it++){
+            //ma=max(it->second,ma);
+            if(it->second>nemax){
+                nemax=it->second;
+                it2=it;
+            }
+
+            
+        }
+        cout<<ma+nemax<<endl;
+
+
+
+
+    }
+
+}
